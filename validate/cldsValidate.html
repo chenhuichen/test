@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>cldsValidate</title>
+</head>
+<body>
+<form class ="baseinfo">
+   <input type="text" class="edit-customer" ><br>
+   <input type="button" value="提交" onclick ="a()">
+</form>
+<script src="../jquery/jquery-1.8.2.min.js"></script>
+<script src="layer.js"></script>
+<script src="clds.validate.js"></script>
+<script type="text/javascript">
+   $(".baseinfo").cldsValid({ 
+	   rules:[{
+			className: "edit-customer",
+			validNames:{
+				required: true
+			},
+			messages:{
+				required:"不能为空"
+			},
+			position: "right"
+		}]
+	   
+   });
+
+function a(){
+		   
+   if($(".baseinfo").cldsValid("valid")){
+		window.baseChecked = true;
+		alert("验证通过");
+	} 
+ }
+
+
+
+</script>
+</body>
+</html>

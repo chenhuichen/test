@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">  
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>按起终点经纬度规划路线</title>
+	<style type="text/css">
+	html,body{
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	#top{
+		width: 100%;
+		height: 20%;
+	}
+
+	#container{
+		width: 100%;
+		height: 100%;
+	}
+	</style>
+</head>
+<body>
+<!-- <div id="top">
+	<input type="text" />
+
+</div> -->
+<input type="hidden" id="base_url" value="${pageContext.request.contextPath}">
+<div id="container"></div>
+<div id="result"></div>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=4ff74373fa23e9e2c687e453ba55fbdf&plugin=AMap.Driving"></script>
+  <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+<script type="text/javascript">
+     window.url = "${pageContext.request.contextPath}";
+
+	var map = new AMap.Map("container", {
+        resizeEnable: true,
+        zoom: 11
+    });
+	var origin = new AMap.LngLat(120.357918, 31.589354);
+	var destination = new AMap.LngLat(120.396591, 31.504644);
+	map.plugin(["AMap.Driving"], function() {
+	        var DrivingOption = {
+	            //驾车策略，包括 LEAST_TIME，LEAST_FEE, LEAST_DISTANCE,REAL_TRAFFIC
+	            policy: AMap.DrivingPolicy.LEAST_TIME
+	        };
+	        MDrive = new AMap.Driving(DrivingOption); //构造驾车导航类
+	        AMap.event.addListener(MDrive, "complete", driving_routeCallBack); //返回导航查询结果
+	        MDrive.search(origin,destination); //根据起终点坐标规划驾车路线
+	    });
+    
+  //导航结果展示
+    function driving_routeCallBack(data) {
+       var routeS = data.routes;
+        if (routeS.length <= 0) {
+           // document.getElementById("result").innerHTML = "未查找到任何结果!<br />建议：<br />1.请确保所有字词拼写正确。<br />2.尝试不同的关键字。<br />3.尝试更宽泛的关键字。";
+        }
+        else{
+            for(var v =0; v< routeS.length;v++){
+                //驾车步骤数
+                steps = routeS[v].steps
+            } 
+            drivingDrawLine();
+        } 
+    }
+     //绘制驾车导航路线
+     function drivingDrawLine(s) {
+        //起点、终点图标
+     /*    var sicon = new AMap.Icon({
+            image:url+"/web/img/hbs/map_start.png" ,
+            size:new AMap.Size(44,44),
+            imageOffset: new AMap.Pixel(-334, -180)
+        }); */
+        var startmarker = new AMap.Marker({
+           // icon : url+"/web/img/hbs/map_start.png", //复杂图标
+            visible : true,
+            position : origin,
+            map:map,
+            offset : {
+                x : -16,
+                y : -40
+            }
+        });
+     /*    var eicon = new AMap.Icon({
+            image: url+"/web/img/hbs/map_end.png",
+            size:new AMap.Size(44,44),
+            imageOffset: new AMap.Pixel(-334, -134)
+        }); */
+        var endmarker = new AMap.Marker({
+            //icon : url+"/web/img/hbs/map_end.png", //复杂图标
+            visible : true,
+            position : destination,
+            map:map,
+            offset : {
+                x : -16,
+                y : -40
+            }
+        });
+        //起点到路线的起点 路线的终点到终点 绘制无道路部分
+    /*     var extra_path1 = new Array();
+        extra_path1.push(origin);
+        extra_path1.push(steps[0].path[0]);
+        var extra_line1 = new AMap.Polyline({
+            map: map,
+            path: extra_path1,
+            strokeColor: "#9400D3",
+            strokeOpacity: 0.7,
+            strokeWeight: 4,
+            strokeStyle: "dashed",   //虚线
+            strokeDasharray: [10, 5]
+        });
+
+        var extra_path2 = new Array();
+        var path_xy = steps[(steps.length-1)].path;
+        extra_path2.push(destination);
+        extra_path2.push(path_xy[(path_xy.length-1)]);
+        var extra_line2 = new AMap.Polyline({
+            map: map,
+            path: extra_path2,
+            strokeColor: "#9400D3",
+            strokeOpacity: 0.7,
+            strokeWeight: 4,
+            strokeStyle: "dashed",  //虚线
+            strokeDasharray: [10, 5]
+        }); */
+
+        var drawpath = new Array();
+        for(var s=0; s<steps.length; s++){
+            drawpath = steps[s].path;
+            var polyline = new AMap.Polyline({
+                map: map,
+                path: drawpath,
+                strokeColor: "#0000E3",
+                strokeOpacity: 0.7,
+                strokeWeight: 4,
+                strokeDasharray: [10, 5]
+            });
+        }
+        map.setFitView();
+    }
+</script>
+</body>
+</html>

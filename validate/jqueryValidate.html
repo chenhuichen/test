@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JQueryValidate</title>
+<style type="text/css">
+span.help-inline {
+	display: inline;
+	color: red;
+	padding-left: 5px;
+}
+
+</style>
+</head>
+<body>
+<form class ="baseinfo">
+   <input type="text" class="stext edit-customer" name="test">
+   <input type="submit" value="提交">
+</form>
+<script src="../jquery/jquery-1.8.2.min.js"></script>
+<script src="jquery.validate.min.js"></script>
+<script type="text/javascript">
+
+    // 表单初始化
+  $(".baseinfo").validate({
+	rules:{
+		test:{
+			required:true
+		}
+		
+	},
+	messages:{
+		test:{
+			required:'不能为空' 
+		}
+		
+	},
+	errorClass: "help-inline",
+	errorElement: "span",
+	errorPlacement: function(error, element){
+		error.appendTo(element.parent());
+	}
+});
+
+</script>
+</body>
+</html>

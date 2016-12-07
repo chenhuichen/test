@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+span.help-inline {
+	display: inline;
+	color: red;
+	padding-left: 5px;
+}
+.la{
+display:inline-block;
+width: 300px
+}
+</style>
+</head>
+<body>
+<form class ="baseinfo">
+ <!-- <label>
+   1)
+   </label><br> -->
+   非空判断：<br>
+   <label>
+  1)文本框：  <input type="text" class="stext" name="text_input"></label><br>
+   <label>
+  2)单选框：  <input type="radio" name="radio_input">男  <input type="radio" name="radio_input">女</label><br>
+  <label>
+  3)复选框：  <input type="checkbox" name="check_input">书<input type="checkbox" name="check_input">本</label><br>
+ <br><br>
+  数字判断：<br>
+   <label>
+   1)请输入有效的数字  （数字包括整数[正，负，0]，小数）<input type="text" class="stext" name="num1">
+   </label><br>
+    <label>
+   2)不能输入纯数字（不能为正整数和0，别的任意）<input type="text" class="stext" name="num11">
+   </label><br>
+    <label>
+   3)非空并且输入正整数<input type="text" class="stext" name="num10">
+   </label><br>
+    <label>
+   4)输入正整数（请输入大于0的整数）<input type="text" class="stext" name="num9">
+   </label><br>
+    <label>
+   5)请输入大于等于0的整数 <input type="text" class="stext" name="num2">
+   </label><br>
+     <label>
+   6)请输入小于等于 {0} 的数字<input type="text" class="stext" name="num7">
+   </label><br>
+    <label>
+   7)请输入大于等于 {0} 的数字<input type="text" class="stext" name="num8">
+   </label><br>
+      <label>
+   8)请输入介于 {0} 至 {1} 的数字<input type="text" class="stext" name="num6">
+   </label><br>
+    <label>
+   9)请输入不超过 {0} 个字符（1个汉字，字母，数字 ==1个字符[与java中不同]）<input type="text" class="stext" name="num3">
+   </label><br>
+    <label>
+   10)请输入至少 {0} 字符<input type="text" class="stext" name="num4">
+   </label><br>
+    <label>
+   11)请输入介于 {0} 至 {1} 个长度的字符<input type="text" class="stext" name="num5">
+   </label><br>
+    <label>
+   12)请输入正整数或者一位小数或者两位小数<input type="text" class="stext" name="num12">
+   </label><br>
+   <label>
+   13)请输入两位正小数<input type="text" class="stext" name="num13">
+   </label><br>
+    <label>
+   14)请输入两位小数<input type="text" class="stext" name="num34">
+   </label><br>
+   <br><br>
+   常见的正则表达式：<br>
+   <label>
+   1)邮箱<input type="text" class="stext" name="num14">
+   </label><br>
+   <label>
+   2)手机号<input type="text" class="stext" name="num15">
+   </label><br>
+   <label>
+   3)传真<input type="text" class="stext" name="num16">
+   </label><br>
+  <label>
+   4)QQ<input type="text" class="stext" name="num26">
+   </label><br>
+   <label>
+   6)微信<input type="text" class="stext" name="num27">
+   </label><br>
+      <label>
+   7)邮编<input type="text" class="stext" name="num17">
+   </label><br>
+    <label>
+   8)固定电话<input type="text" class="stext" name="num18">
+   </label><br>
+    <label>
+   9)固定电话(无区号)<input type="text" class="stext" name="num19">
+   </label><br>
+   <label>
+   10)身份证号码<input type="text" class="stext" name="num20">
+   </label><br>
+    <label>
+   11)卡号<input type="text" class="stext" name="num23">
+   </label><br>
+   <label>
+   12)车牌号<input type="text" class="stext" name="num28">
+   </label><br>
+   <label>
+   13)ip4<input type="text" class="stext" name="num30">
+   </label><br>
+    <label>
+   14)url(http[s]开头)<input type="text" class="stext" name="num31">
+   </label><br>
+    <label>
+   15)经度<input type="text" class="stext" name="num37">
+   </label><br>
+   <label>
+   16)纬度<input type="text" class="stext" name="num38">
+   </label><br>
+   <label>
+   17)不能输入纯中文<input type="text" class="stext" name="num35">
+   </label><br>
+   <label>
+   18)不能输入纯英文<input type="text" class="stext" name="num36">
+   </label><br>
+   <label>
+   19)用户名（数字或者字母或者汉字或者三种集合,4-20位）<input type="text" class="stext" name="num21">
+   </label><br>
+    <label>
+   20)新密码（数字或者字母或者两种集合,4-20位）<input type="text" class="stext" name="num22" id="newpwd">
+   </label><br>
+     <label>
+   21)密码（首位为字母，然后数字，然后【数字或者字母或者两种集合4-20位】,）<input type="text" class="stext" name="num24">
+   </label><br>
+       <label>
+   22)密码（数字和字母两种集合4-20位,）<input type="text" class="stext" name="num25">
+   </label><br>
+   <label>
+   23)再次输入新密码<input type="text" class="stext" name="num39">
+   </label><br>
+   <label>
+   24)日期(例2013-01-01或2013-1-1，中间分隔可以是/或者-或者.)<input type="text" class="stext" name="num29">
+   </label><br>
+   <label>
+   25)时间((hh:)mm(:ss))<input type="text" class="stext" name="num32">
+   </label><br>
+   <label>
+   26)时间日期(YYYY-MM-DD/YYYY/MM/DD hh:mm:ss)<input type="text" class="stext" name="num33">
+   </label><br>
+   <input type="submit" value="提交">
+</form>
+<script src="../jquery/jquery-1.8.2.min.js"></script>
+<script src="jquery.validate.min.js"></script>
+<script src="jquery.validate.common.js"></script>
+<script type="text/javascript">
+
+    // 表单初始化
+  $(".baseinfo").validate({
+	rules:{
+		text_input:{
+			required:true
+		},
+		radio_input:{
+			required:true
+		},
+		check_input:{
+			required:true
+		},
+		num1:{
+			number:true
+		},
+		num2:{
+			digits:true
+		},
+		num3:{
+			maxlength:5
+		},
+		num4:{
+			minlength:2
+		},
+		num5:{
+			rangelength:[2,5]
+		},
+		num6:{
+			range:[2,5]
+		},
+		num7:{
+			max:5
+		},
+		num8:{
+			min:2
+		},
+		num9:{
+			isZZZs:true
+		},
+		num10:{
+			isZZZ:true
+		},
+		num11:{
+			isNum:true
+		},
+		num12:{
+			isMaxTwoDecimalPlacess:true
+		},
+		num13:{
+			isMaxTwoDecimal:true
+		},
+		num14:{
+			isEmail:true
+		},
+		num15:{
+			isPhone:true
+		},
+		num16:{
+			isFax:true
+		},
+		num17:{
+			isZipCode:true
+		},
+		num18:{
+			isTel:true
+		},
+		num19:{
+			isTel2:true
+		},
+		num20:{
+			isIDCard:true
+		},
+		num21:{
+			isLoginName:true
+		},
+		num22:{
+			isPassWord:true
+		},
+		num23:{
+			isAccountName:true
+		},
+		num24:{
+			isPwd:true
+		},
+		num25:{
+			isPwds:true
+		},
+		num26:{
+			isQQ:true
+		},
+        num27:{
+        	isweixin:true
+		},
+		num28:{
+			isVehicleNo:true
+		},
+		num29:{
+			isDate:true
+		},
+		num30:{
+			isip4:true
+		},
+		num31:{
+			isurl:true 
+		},
+		num32:{
+			istime:true
+		},
+		num33:{
+			isdatetime:true
+		},
+		num34:{
+			istwo:true
+		},
+		num35:{
+			isChinese:true
+		},
+		num36:{
+			isAbc:true
+		},
+		num37:{
+			islng:true
+		},
+		num38:{
+			islat:true
+		},
+		num39:{
+			equalTo:newpwd //当前值与id=newpwd比较
+		}
+	},
+	messages:{
+		text_input:{
+			required:'不能为空' 
+		},
+		radio_input:{
+			required:'单选按钮必须选一个 ' 
+		},
+        check_input:{
+        	required:'复选框 必须选一个 ' 
+		},
+		num1:{
+			number:'输入数字 '
+		},
+		num2:{
+			digits:'输入大于等于0的整数 '
+		},
+		num3:{
+			
+		},
+		
+		num4:{
+			
+		},
+		num5:{
+			
+		},
+		num6:{
+			range:$.validator.format("请输入介于 {0} 至 {1} 的数字 ")
+		},
+		num7:{
+			max:$.validator.format("请输入小于等于 {0} 的数字 ")
+		},
+		num8:{
+			min:$.validator.format("请输入大于等于 {0} 的数字 ")
+		},
+		num9:{
+			isZZZs:"输入正整数"
+		},
+		num10:{
+			isZZZ:"不能为空并且输入正整数"
+		},
+		num11:{
+			isNum:"不能输入纯数字 "
+			 
+		},
+		num12:{
+			isMaxTwoDecimalPlacess:"最多只能输入两位小数"
+		},
+		num13:{
+			isMaxTwoDecimal:"请输入两位小数"
+		},
+		num14:{
+			
+		},
+		num15:{
+			
+		},
+		num16:{
+			
+		},
+		num17:{
+			
+		},
+		num18:{
+			
+		},
+		num19:{
+			
+		},
+		num20:{
+			
+		},
+		num21:{
+			isLoginName:"用户名由数字，汉字，字母组成"
+		},
+		num24:{
+			isPwd:'密码必须有数字和字母两者集合,首位为字母'
+		},
+		num25:{
+			isPwds:'密码必须有数字和字母两者集合'
+		},
+		num29:{
+			isDate:'日期格式不对'
+		},
+		num30:{
+			isip4:'ip4地址输入错误'
+		},
+		num31:{
+			isurl:'url输入错误'
+		},
+		num23:{
+			isAccountName:'卡号输入不正确'
+		},
+		num32:{
+			istime:'时间格式错误'
+		},
+		num33:{
+			isdatetime:'格式错误'
+		},
+		num34:{
+			istwo:'输入两位小数'
+		},
+		num35:{
+			isChinese:'不能输入纯中文'
+		},
+		num36:{
+			isAbc:'不能输入纯英文'
+		},
+		num37:{
+			islng:'经度输入错误'
+		},
+		num38:{
+			islat:'纬度输入错误'
+		}
+		
+		
+	},
+	errorClass: "help-inline",
+	errorElement: "span",
+	errorPlacement : function(error, element) {
+		// 错误信息放置位置
+		error.appendTo(element.parent());
+	}
+});
+
+</script>
+</body>
+</html>
