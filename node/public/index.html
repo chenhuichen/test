@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+a{
+	cursor:pointer;
+	}
+	div{
+		width:300px;
+		height:150px;
+		background-color:#CCC
+		
+		}
+</style>
+</head>
+<body>
+<!--<form action="http://127.0.0.1:8081/process_get" method="GET">
+First Name: <input type="text" name="first_name">  <br>
+
+Last Name: <input type="text" name="last_name">
+<input type="submit" value="Submit">
+</form>-->
+
+<!--<form action="http://127.0.0.1:8081/process_post" method="POST">
+第一个名字: <input type="text" name="first_name">  <br>
+
+Last Name: <input type="text" name="last_name">
+<input type="submit" value="Submit">
+</form>-->
+
+<!--<h3>文件上传：</h3>
+选择一个文件上传: <br />
+<form action="/file_upload" method="post" enctype="multipart/form-data">
+<input type="file" name="image" size="50" />
+<br />
+<input type="submit" value="上传文件" />
+</form>-->
+
+<h3>REST：</h3>
+<table class="data-table">
+<thead>
+<th>id</th>
+<th>用户名</th>
+<th>密码</th>
+<th>职位</th>
+<th>操作</th>
+</thead>
+<tbody></tbody>
+</table>
+<div id="model" style="display:none">
+<form>
+id :<input readonly id="id"/><br>
+用户名:<input id='username'/><br>
+密码：<input id="pwd"><br>
+职位：<input id="position"><br>
+<input type="button" onClick="add()" value="保存">
+</form>
+</div>   
+<script src="jquery-1.8.2.min.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
