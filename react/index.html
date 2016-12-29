@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<div id="example"></div>
+<div id="demo1"></div>
+<div id="demo2"></div>
+<div id="demo3"></div>
+<div id="demo4"></div>
+<div id="demo5"></div>
+<!--react.min.js - React 的核心库
+react-dom.min.js - 提供与 DOM 相关的功能
+browser.min.js - 用于将 JSX 语法转为 JavaScript 语法--> 
+<script src="build/jquery-1.8.2.min.js"></script> 
+<script src="build/react.min.js"></script> 
+<script src="build/react-dom.min.js"></script> 
+<script src="https://static.runoob.com/assets/react/browser.min.js" ></script> 
+<!--<script src="build/index.js" type="text/label"></script>-->
+
+<script type="text/babel">
+
+     ReactDOM.render(
+        <div>
+	<h2>欢迎学习 React</h2>
+    <p data-myattribute = "somevalue">这是一个很不错的 JavaScript 库!</p>
+		<div>
+	  <h1>{1+1}</h1>
+	</div>
+    </div>
+	,
+      document.getElementById('example')
+      );
+	  
+//===================================================================  
+	  var HelloMessage = React.createClass({
+		  //设置默认的prop值，prop不可变，state可变
+		    getDefaultProps: function() {
+    return {
+      name: 'Runoob'
+    };
+  },
+  render: function() {
+    return <h1>Hello World！{this.props.name}</h1>;
+  }
+});
+
+//====================================================================  
+	// react组件
+	 ReactDOM.render(
+     <HelloMessage/>,
+      document.getElementById('demo1')
+      );
+	  
+//=====================================================================	  
+	  //复合组件
+var WebSite = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <Name name={this.props.name} />
+        <Link site={this.props.site} />
+      </div>
+    );
+  }
+});
+
+var Name = React.createClass({
+  render: function() {
+    return (
+      <h1>{this.props.name}</h1>
+    );
+  }
+});
+
+var Link = React.createClass({
+  render: function() {
+    return (
+      <a href={this.props.site}>
+        {this.props.site}
+      </a>
+    );
+  }
+});
+ ReactDOM.render(
+  <WebSite name="哈哈" site="http://www.runoob.com" />,
+  document.getElementById('demo2')
+); 
+
+//===========================================================
+//react state状态
+var LikeButton = React.createClass({
+  getInitialState: function() {
+    return {liked: false};
+  },
+  handleClick: function(event) {
+    this.setState({liked: !this.state.liked});
+  },
+  render: function() {
+    var text = this.state.liked ? '喜欢' : '不喜欢';
+    return (
+      <p onClick={this.handleClick}>
+        你<b>{text}</b>我。点我切换状态。
+      </p>
+    );
+  }
+});
+ ReactDOM.render(
+  <LikeButton/>,
+  document.getElementById('demo3')
+); 
+//=========================================================
+//react ajax
+var UserGist = React.createClass({
+  getInitialState: function() {
+    return {
+      username: '',
+      lastGistUrl: ''
+    };
+  },
+//在第一次渲染后调用，只在客户端。
+  componentDidMount: function() {
+    this.serverRequest = $.get(this.props.source, function (result) {
+      var lastGist = result[0];
+      this.setState({
+        username: lastGist.owner.login,
+        lastGistUrl: lastGist.html_url
+      });
+    }.bind(this));
+  },
+//在组件从 DOM 中移除的时候立刻被调用。
+  componentWillUnmount: function() {
+    this.serverRequest.abort();
+  },
+
+  render: function() {
+    return (
+      <div>
+        {this.state.username} 用户最新的 Gist 共享地址：
+        <a href={this.state.lastGistUrl}>{this.state.lastGistUrl}</a>
+      </div>
+    );
+  }
+});
+ReactDOM.render(
+  <UserGist source="https://api.github.com/users/octocat/gists" />,
+  document.getElementById('demo4')
+);
+//========================================================================
+//react表单与事件
+
+//==========================================================================
+var MyComponent = React.createClass({
+  handleClick: function() {
+    // 使用原生的 DOM API 获取焦点
+    this.refs.myInput.focus();
+  },
+  render: function() {
+    //  当组件插入到 DOM 后，ref 属性添加一个组件的引用于到 this.refs
+    return (
+      <div>
+        <input type="text" ref="myInput" />
+        <input
+          type="button"
+          value="点我输入框获取焦点"
+          onClick={this.handleClick}
+        />
+      </div>
+    );
+  }
+});
+ReactDOM.render(
+  <MyComponent />,
+  document.getElementById('demo5')
+);
+
+    </script>
+</body>
+</html>
